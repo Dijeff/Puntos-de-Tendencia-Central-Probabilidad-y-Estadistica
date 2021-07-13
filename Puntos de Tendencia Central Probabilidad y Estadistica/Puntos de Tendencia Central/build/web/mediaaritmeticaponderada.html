@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>MEDIA ARITMETICA PONDERADA</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+
+
+
+    </head>
+    <body style="background-image: url('fondo.jpg');">
+        <ul class="nav justify-content-center" style="padding: 2%; background-color: lightgrey ">
+            <h3 style="float: left">Media Aritmética Ponderada</h3>
+            <li class="nav-item">
+                <a class="nav-link active"  onclick="Swal.fire({
+                            title: '<p><strong>Media Aritmética Ponderada</strong></p>',
+                            icon: 'info',
+                            html:
+                                    'La media ponderada es un tipo de media que otorga diferentes pesos a los distintos valores sobre los que se calcula.</br> </br>' +
+                                    'Ejemplo 1 sobre casos de valores repetidos :</br>' +
+                                    '|__Xi_|_Fi_|_Xi*Fi_|_Xi*Fi__|</br>' +
+                                    '|__1__|_2_|_1*(2)_|___2___|</br>' +
+                                    '|__1__|___|_______|_______|</br>' +
+                                    '|__3__|_3_|_3*(3)_|___9___|</br>' +
+                                    '|__3__|___|_______|_______|</br>' +
+                                    '|__4__|_1_|_4*(1)_|___4___|</br>' +
+                                    '|__5__|_2_|_5*(2)_|__10__|</br>' +
+                                    '|__5__|___|_______|_______|</br>' +
+                                    '|_____|_8_|_______|__25__|</br></br>' +
+                                    
+                                     'Aplico la fórmula:</br> </br>'+
+                                      '   1*(2)+3*(3)+4*(1)+5*(2)                               </br>'+
+                                      'X=---------------------------------= </br>'+
+                                       '               8                                 </br></br>'+
+                                         '   25                          </br>'+
+                                      'X=------------------------=3,13 </br>'+
+                                       '      8                                        </br></br>'+
+                                  
+                                    'X=3,13. ',
+                            showCloseButton: true,
+                            focusConfirm: false,
+                            confirmButtonText:
+                                    'Entendí!',
+                        })">Definición</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" onclick="Swal.fire({
+                            title: '<strong>MEDIA ARITMETICA PONDERADA</strong>',
+                            icon: 'info',
+                            html:
+                                    'Ingrese el rango de datos con el cual se va trabajar,tiene que ser un numero entero entre 7 y 15, en el primer espacio.</br></br> ' +
+                                    'Ingrese datos de entrada con los cuales se van trabajar,tienen que ser un numeros enteros de uno o dos digitos, en la tabla.',
+                            showCloseButton: true,
+                            focusConfirm: false,
+                            confirmButtonText:
+                                    'Entendí!',
+                        })">Ayuda</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">Menu</a>
+            </li>
+        </ul>
+        <script>
+            function sumarNumeros3(n1, n2) {
+                return (parseInt(n1) + parseInt(n2));
+            }
+
+
+            function getComboA(selectObject) {
+                //cantidad de nuemros
+
+                var value = selectObject.value;
+                console.log(value);
+
+                //limitar ingreso de datos
+                if (value <= 15 && value >= 7) {
+
+                    var li = document.getElementById("exampleFormControlInput1").value;
+                    li = sumarNumeros3(li, 1);
+                    var i = 0;
+                    for (i = 1; i < li; i++) {
+                        document.getElementById("num" + i).disabled = false;
+                    }
+                    var j;
+                    for (j = i; j < 16; j++) {
+                        document.getElementById("num" + j).disabled = true;
+                    }
+
+                    document.getElementById("exampleFormControlTextarea1").setAttribute("maxlength", 0);
+                } else {
+                    document.getElementById("exampleFormControlTextarea1").setAttribute("maxlength", value * 3 - 1);
+                    document.getElementById("num1").disabled = true;
+                }
+
+
+
+
+            }
+
+
+
+
+            function guardar() {
+                var valorest = [];
+                var valoresacomodados = [];
+                var valoresacomodados2 = [];
+                valorest[0] = document.getElementById("num1").value;
+                valorest[1] = document.getElementById("num2").value;
+                valorest[2] = document.getElementById("num3").value;
+                valorest[3] = document.getElementById("num4").value;
+                valorest[4] = document.getElementById("num5").value;
+                valorest[5] = document.getElementById("num6").value;
+                valorest[6] = document.getElementById("num7").value;
+                valorest[7] = document.getElementById("num8").value;
+                valorest[8] = document.getElementById("num9").value;
+                valorest[9] = document.getElementById("num10").value;
+                valorest[10] = document.getElementById("num11").value;
+                valorest[11] = document.getElementById("num12").value;
+                valorest[12] = document.getElementById("num13").value;
+                valorest[13] = document.getElementById("num14").value;
+                valorest[14] = document.getElementById("num15").value;
+
+///AQI QUEDE CABEXON TEMINALO
+
+                function comparar(a, b) {
+                    return a - b;
+                }
+
+                valoresacomodados2 = valorest.sort(comparar);
+                var p = 0;
+                for (var i = 0; i < 15; i++) {
+
+                    valoresacomodados[i] = "";
+
+                }
+                for (var i = 0; i < valoresacomodados2.length; i++) {
+
+                    if (valoresacomodados2[i] === "") {
+
+                    } else
+                    {
+                        valoresacomodados[p] = valoresacomodados2[i];
+                        p++;
+                    }
+
+                }
+
+                console.log("numero " + valoresacomodados);
+
+//////////////////////////////////////////////////////////////////////////////////
+                var yu = [];
+                var yu2 = [];
+                var yu3 = [];
+                var resmulti = [];
+                var resmulti2 = [];
+                for (var i = 0; i < 15; i++) {
+
+                    yu[i] = "";
+                    yu2[i] = "";
+                    yu3[i] = 0;
+                    resmulti[i] = "";
+                    resmulti2[i] = 0;
+
+                }
+                var o = 0;
+                var g = 0;
+                var contador = 1;
+                for (var i = 0; i < valoresacomodados.length; i++) {
+                    o++;
+                    if (valoresacomodados[i] !== valoresacomodados[o] && valoresacomodados[i] !== "") {
+
+                        yu[g] = valoresacomodados[i];
+
+                        yu2[g] = contador;
+                        yu3[g] = contador;
+                        g++;
+                        contador = 1;
+                    } else {
+
+                        contador++;
+
+
+                    }
+
+                }
+                var formulamp = "(";
+//////////////////////////////////////////////////////////////////////////////////
+                function multiplicarNumeros(n1, n2) {
+                    return (parseInt(n1) * parseInt(n2));
+                }
+                function dividirNumeros(n1, n2) {
+                    return (parseInt(n1) / parseInt(n2));
+                }
+                function sumarNumeros1(n1, n2) {
+                    return (parseInt(n1) + parseInt(n2))
+                }
+
+                for (var i = 0; i < 15; i++)
+                {
+
+                    if (yu[i] == "") {
+                        i = 16;
+                    } else {
+                        resmulti[i] = multiplicarNumeros(yu[i], yu2[i]);
+                        resmulti2[i] = multiplicarNumeros(yu[i], yu2[i]);
+
+                        formulamp = formulamp + yu[i] + "*" + yu2[i] + "+";
+                    }
+                }
+
+                formulamp = formulamp + "/";
+
+                for (var i = 0; i < 15; i++) {
+
+                    if (yu2[i] == "") {
+                        i = 16;
+                    } else {
+                        formulamp = formulamp + yu2[i] + "+";
+                    }
+
+
+                }
+                formulamp = formulamp + ")=";
+                var sumaa = 0;
+                var sumab = 0;
+                var t = 1;
+                for (var i = 0; i < 15; i++)
+                {
+
+                    if (yu2[i] == "") {
+                        i = 16;
+                    } else {
+                        sumaa = sumaa + sumarNumeros1(resmulti2[i], resmulti2[t]);
+                        t++;
+                        t++;
+                        i++;
+                    }
+
+
+
+                }
+                var t = 1;
+                for (var i = 0; i < 15; i++)
+                {
+                    if (yu2[i] == "") {
+                        i = 16;
+                    } else {
+                        sumab = sumab + sumarNumeros1(yu3[i], yu3[t]);
+                        t++;
+                        t++;
+                        i++;
+                    }
+                }
+
+                var resutadomp = dividirNumeros(sumaa, sumab);
+
+                formulamp = formulamp + "(" + sumaa + "/" + sumab + ")=" + resutadomp;
+
+
+
+/////////////////////////////////////////////////////////////////////////////////
+                for (var i = 0; i < 15; i++) {
+
+                    console.log("Numero: " + yu[i] + "veces" + yu2[i]);
+
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+                var fila = "<tr><td>" + yu[0] + "</td><td>" + yu2[0] + "</td><td>" + resmulti[0] + "</td><td>X=" + formulamp + "</td><td>X=" + resutadomp + "</td></tr>";
+                var fila2 = "<tr><td>" + yu[1] + "</td><td>" + yu2[1] + "</td><td>" + resmulti[1] + "</td></tr>";
+                var fila3 = "<tr><td>" + yu[2] + "</td><td>" + yu2[2] + "</td><td>" + resmulti[2] + "</td></tr>";
+                var fila4 = "<tr><td>" + yu[3] + "</td><td>" + yu2[3] + "</td><td>" + resmulti[3] + "</td></tr>";
+                var fila5 = "<tr><td>" + yu[4] + "</td><td>" + yu2[4] + "</td><td>" + resmulti[4] + "</td></tr>";
+                var fila6 = "<tr><td>" + yu[5] + "</td><td>" + yu2[5] + "</td><td>" + resmulti[5] + "</td></tr>";
+                var fila7 = "<tr><td>" + yu[6] + "</td><td>" + yu2[6] + "</td><td>" + resmulti[6] + "</td></tr>";
+                var fila8 = "<tr><td>" + yu[7] + "</td><td>" + yu2[7] + "</td><td>" + resmulti[7] + "</td></tr>";
+                var fila9 = "<tr><td>" + yu[8] + "</td><td>" + yu2[8] + "</td><td>" + resmulti[8] + "</td></tr>";
+                var fila10 = "<tr><td>" + yu[9] + "</td><td>" + yu2[9] + "</td><td>" + resmulti[9] + "</td></tr>";
+                var fila11 = "<tr><td>" + yu[10] + "</td><td>" + yu2[10] + "</td><td>" + resmulti[10] + "</td></tr>";
+                var fila12 = "<tr><td>" + yu[11] + "</td><td>" + yu2[11] + "</td><td>" + resmulti[11] + "</td></tr>";
+                var fila13 = "<tr><td>" + yu[12] + "</td><td>" + yu2[12] + "</td><td>" + resmulti[12] + "</td></tr>";
+                var fila14 = "<tr><td>" + yu[13] + "</td><td>" + yu2[13] + "</td><td>" + resmulti[13] + "</td></tr>";
+                var fila15 = "<tr><td>" + yu[14] + "</td><td>" + yu2[14] + "</td><td>" + resmulti[14] + "</td></tr>";
+
+
+                var btn = document.createElement("TR");
+                var btn2 = document.createElement("TR");
+                var btn3 = document.createElement("TR");
+                var btn4 = document.createElement("TR");
+                var btn5 = document.createElement("TR");
+                var btn6 = document.createElement("TR");
+                var btn7 = document.createElement("TR");
+                var btn8 = document.createElement("TR");
+                var btn9 = document.createElement("TR");
+                var btn10 = document.createElement("TR");
+                var btn11 = document.createElement("TR");
+                var btn12 = document.createElement("TR");
+                var btn13 = document.createElement("TR");
+                var btn14 = document.createElement("TR");
+                var btn15 = document.createElement("TR");
+
+
+                btn.innerHTML = fila;
+                btn2.innerHTML = fila2;
+                btn3.innerHTML = fila3;
+                btn4.innerHTML = fila4;
+                btn5.innerHTML = fila5;
+                btn6.innerHTML = fila6;
+                btn7.innerHTML = fila7;
+                btn8.innerHTML = fila8;
+                btn9.innerHTML = fila9;
+                btn10.innerHTML = fila10;
+                btn11.innerHTML = fila11;
+                btn12.innerHTML = fila12;
+                btn13.innerHTML = fila13;
+                btn14.innerHTML = fila14;
+                btn15.innerHTML = fila15;
+
+
+                document.getElementById("tablita").appendChild(btn);
+                document.getElementById("tablita").appendChild(btn2);
+                document.getElementById("tablita").appendChild(btn3);
+                document.getElementById("tablita").appendChild(btn4);
+                document.getElementById("tablita").appendChild(btn5);
+                document.getElementById("tablita").appendChild(btn6);
+                document.getElementById("tablita").appendChild(btn7);
+                document.getElementById("tablita").appendChild(btn8);
+                document.getElementById("tablita").appendChild(btn9);
+                document.getElementById("tablita").appendChild(btn10);
+                document.getElementById("tablita").appendChild(btn11);
+                document.getElementById("tablita").appendChild(btn12);
+                document.getElementById("tablita").appendChild(btn13);
+                document.getElementById("tablita").appendChild(btn14);
+                document.getElementById("tablita").appendChild(btn15);
+
+                //logiga para barra lateral
+
+
+
+
+
+                //grafico 
+
+
+
+
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var chart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: [yu2[0].toString(), yu2[1].toString(), yu2[2].toString(), yu2[3].toString(), yu2[4].toString(), yu2[5].toString(), yu2[6].toString(), yu2[7].toString(), yu2[8].toString(), yu2[9].toString(), yu2[10].toString(), yu2[11].toString(), yu2[12].toString(), yu2[13].toString(), yu2[14].toString(), "MEDIA ARITMETICA PONDERADA"],
+                        datasets: [{
+                                label: 'Resultados',
+                                backgroundColor: '#42a5f5',
+                                borderColor: 'gray',
+                                data: [resmulti[0], resmulti[1], resmulti[2], resmulti[3], resmulti[4], resmulti[5], resmulti[6], resmulti[7], resmulti[8], resmulti[9], resmulti[10], resmulti[11], resmulti[12], resmulti[13], resmulti[14], resutadomp]
+                            }
+                        ]},
+                    options: {responsive: true}
+                });
+
+
+
+
+            }
+
+
+
+        </script>
+        <div style=" margin: 5% 10% 10% 10% ;">
+
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Rango de numeros a ingresar:</label>
+                <input  type="number"  class="form-control" id="exampleFormControlInput1" onchange="getComboA(this)" placeholder="Ingrese números enteros positivos entre 7 y 15!" >
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Ingrese datos de entrada:</label>
+
+                    <table class="table table-dark" style=" width: 10%;margin-top: 4%">
+                        <thead >
+                            <tr style="height: 44px">
+                                <th scope="col" >i</th>
+                                <th scope="col">xi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablita2">
+
+                            <tr> <td>1</td><td><input type="number" id="num1" disabled></td></tr>
+                            <tr> <td>2</td><td><input type="number" id="num2" disabled></td></tr>
+                            <tr> <td>3</td><td><input type="number" id="num3" disabled></td></tr>
+                            <tr> <td>4</td><td><input type="number" id="num4" disabled></td></tr>
+                            <tr> <td>5</td><td><input type="number" id="num5" disabled></td></tr>
+                            <tr> <td>6</td><td><input type="number" id="num6" disabled></td></tr>
+                            <tr> <td>7</td><td><input type="number" id="num7" disabled></td></tr>
+                            <tr> <td>8</td><td><input type="number" id="num8" disabled></td></tr>
+                            <tr> <td>9</td><td><input type="number" id="num9" disabled></td></tr>
+                            <tr> <td>10</td><td><input type="number" id="num10" disabled></td></tr>
+                            <tr> <td>11</td><td><input type="number" id="num11" disabled></td></tr>
+                            <tr> <td>12</td><td><input type="number" id="num12" disabled></td></tr>
+                            <tr> <td>13</td><td><input type="number" id="num13" disabled></td></tr>
+                            <tr> <td>14</td><td><input type="number" id="num14" disabled></td></tr>
+                            <tr> <td>15</td><td><input type="number" id="num15" disabled></td></tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <table class="table table-dark" style="margin-top: 3.6%; float:right;  width: 75%;">
+                    <thead>
+                        <tr>
+                            <th scope="col">(xi) Orden ascendente</th>
+                            <th scope="col">(Fi)Frecuencia Absoluta</th>
+                            <th scope="col">(xi*Fi)</th>
+                            <th scope="col">Formula</th>
+                            <th scope="col">Media Aritmética Ponderada</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablita">
+
+                    </tbody>
+                </table>
+
+            </div>
+            <button type="button" onclick="guardar()"  class="btn btn-primary">Calcular Media Aritmética Ponderada</button>
+            <div style="background-color: white">
+                <canvas id="myChart"></canvas>
+            </div>
+
+            <script src="grafico.js"></script>
+
+        </div>
+
+    </body>
+</html>
